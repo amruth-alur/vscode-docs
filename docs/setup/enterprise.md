@@ -1,12 +1,42 @@
 ---
 ContentId: 936ab8e0-3bbe-4842-bb17-ea314665c20a
-DateApproved: 11/12/2025
+DateApproved: 12/10/2025
 MetaDescription: Learn about Visual Studio Code's enterprise support features, such as group policies or restricting allowed extensions.
 
 ---
 # Enterprise support
 
 Visual Studio Code can be used as a development tool for enterprise teams of all sizes. As an IT admin, you can configure VS Code to achieve consistency and compatibility across your organization.
+
+## Private marketplace for extensions
+
+The private marketplace enables enterprises to self-host and distribute extensions within their organization to meet organizational security and compliance requirements. The private marketplace integrates seamlessly with the VS Code extensions experience, giving users easy discovery and automatic updates of private extensions. Common use cases include:
+
+* Hosting internal extensions privately to protect intellectual property.
+* Providing developers with access to selected or all extensions from the [Visual Studio Marketplace](https://marketplace.visualstudio.com), even in environments with restricted internet connectivity.
+* Downloading and rehosting extensions from external sources to apply enterprise-specific verification and security standards. See how [Microsoft protects your software supply chain](https://aka.ms/vsmsecurityblog).
+
+### Key features
+
+* **Self-hosting**: Host internal and downloaded extensions on your own infrastructure, such as Azure or Kubernetes.
+* **Simple deployment**: Deploy the private marketplace as a stateless Docker container, no external database required.
+* **Flexible storage**: Publish and manage extensions using any file system or Azure Artifacts.
+* **Upstreaming**: Choose to automatically include public extensions from the Visual Studio Marketplace. Allow or deny select extensions by setting up an [allow list](#configure-allowed-extensions).
+* **Rehosting**: Choose to download and host public extensions for enhanced security and support for environments without public internet connectivity (air-gapped).
+* **Centralized rollout**: Deploy the private marketplace to your team using group policy on Windows and macOS.
+* **Integrated installation and updates**: Search for and install extensions directly from VS Code, with automatic updates for new versions in the private marketplace.
+* **Cross-platform support**: Compatible with VS Code desktop on Windows, macOS, and Linux.
+
+> [!NOTE]
+> Connecting from VS Code Server or VS Code for the Web is not supported.
+
+### Availability
+
+Private marketplace is currently available to GitHub Enterprise customers. VS Code users must sign in with a GitHub Enterprise or Copilot Enterprise/Business account to access the private marketplace.
+
+### Getting started
+
+Refer to the **[deployment and feature guide](https://aka.ms/private-marketplace/readme)** for deployment instructions, scripts, and development environment configuration. If you have questions or need assistance, contact [private marketplace support](https://aka.ms/vspm/support).
 
 ## Network: Common hostnames
 
@@ -153,6 +183,7 @@ VS Code currently provides policies to control the following admin-controlled fe
 | `ChatPromptFiles`                    | Enable [prompt and instruction files](/docs/copilot/customization/overview.md) in chat.            | `chat.promptFiles`                            | 1.99 - 1.105      |
 | `ChatMCP`                            | Enable [Model Context Protocol (MCP) servers](/docs/copilot/customization/mcp-servers.md) support and which sources are allowed. | `chat.mcp.access`                             | 1.99            |
 | `ChatToolsAutoApprove`               | Enable global auto-approval for agent mode tools.                                                  | `chat.tools.global.autoApprove`               | 1.99            |
+| `ChatToolsEligibleForAutoApproval`   | Controls which agent tools are eligible for [automatic approval](/docs/copilot/chat/chat-tools.md#tool-approval). Tools set to `false` always require user approval and can't be auto-approved. Policy is configured via a JSON object, e.g `{"runTask": false, "fetch": false}`. | `chat.tools.eligibleForAutoApproval`          | 1.107           |
 | `CopilotReviewSelection`             | Enable code review for editor selection.                                                           | `github.copilot.chat.reviewSelection.enabled` | 1.104           |
 | `CopilotReviewAgent`                 | Enable Copilot Code Review for pull requests and changed files.                                    | `github.copilot.chat.reviewAgent.enabled`     | 1.104           |
 | `ChatToolsTerminalEnableAutoApprove` | Enable the rule-based auto-approval for the terminal tool.                                         | `chat.tools.terminal.autoApprove`             | 1.104           |
@@ -162,6 +193,9 @@ VS Code currently provides policies to control the following admin-controlled fe
 ### Group Policy on Windows
 
 VS Code has support for [Windows Registry-based Group Policy](https://learn.microsoft.com/previous-versions/windows/desktop/policy/implementing-registry-based-policy). Starting from VS Code version 1.69, each release ships with a `policies` directory containing ADMX template files that can be added to the following path: `C:\Windows\PolicyDefinitions`. Make sure to also copy the corresponding `adml` file to the `C:\Windows\PolicyDefinitions\<your-locale>` directory.
+
+> [!TIP]
+> The ADMX/ADML files can be found by downloading the appropriate [VS Code zip archive](https://code.visualstudio.com/docs/?dv=winzip).
 
 Once the policy definitions are installed, admins can use the [Local Group Policy Editor](https://learn.microsoft.com/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/dn265982(v=ws.11)) to manage the policy values.
 
@@ -255,4 +289,4 @@ Users can still uninstall extensions that were preinstalled. Restarting VS Code 
 
 ## Related resources
 
-- [Learn about security considerations of using AI in VS Code](/docs/copilot/security.md)
+* [Learn about security considerations of using AI in VS Code](/docs/copilot/security.md)

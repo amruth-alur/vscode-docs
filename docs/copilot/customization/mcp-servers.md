@@ -1,6 +1,6 @@
 ---
 ContentId: 7c550054-4ade-4665-b368-215798c48673
-DateApproved: 11/12/2025
+DateApproved: 12/10/2025
 MetaDescription: Learn how to configure and use Model Context Protocol (MCP) servers with GitHub Copilot in Visual Studio Code.
 MetaSocialImage: ../images/shared/github-copilot-social.png
 ---
@@ -60,7 +60,7 @@ VS Code supports the following MCP capabilities:
 ## Add an MCP server
 
 > [!CAUTION]
-> MCP servers can run arbitrary code on your machine. Only add servers from trusted sources, and review the publisher and server configuration before starting it. VS Code prompts you to confirm that you [trust the MCP server](#mcp-server-trust) when you start an MCP server for the first time. Read the [Security documentation](/docs/copilot/security.md) for using AI in VS Code to understand the implications.
+> Local MCP servers can run arbitrary code on your machine. Only add servers from trusted sources, and review the publisher and server configuration before starting it. VS Code prompts you to confirm that you [trust the MCP server](#mcp-server-trust) when you start an MCP server for the first time. Read the [Security documentation](/docs/copilot/security.md) for using AI in VS Code to understand the implications.
 
 ### Add an MCP server from the GitHub MCP server registry
 
